@@ -183,7 +183,7 @@ const Home: React.FC = () => {
         autoComplete="off"
       >
         <Form.Item<FieldType>
-          label="input"
+          label="提问"
           name="question"
           rules={[{ required: true, message: "Please input your question!" }]}
         >
