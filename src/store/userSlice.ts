@@ -2,86 +2,66 @@
  * @Author: xiaoman
  * @Date: 2024-05-06 15:12:45
  * @LastEditors: xiaoman
- * @Description: 用户信息
+ * @Description: 会话信息
  */
 
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface PowerState {
-  expiredate: string,
-  level: number,
-  name: string
-}
-
-export enum LOGINMODE {
-  /**
-   * 浏览器
-   */
-  BROWSER,
-  /**
-   * unity软件
-   */
-  UNITY
-}
-
-interface UserInfoState {
-  id: string;
-  token: string;
-  powers: PowerState[];
-  mobile: string;
-  realname: string;
-  pointid: string;
-}
-
 interface UserInfoSlice {
   /**
-   * 用户信息
+   * APP_KEY
    */
-  userInfo: UserInfoState,
+  auth: string;
   /**
-   * 系统标题
+   * 智能体编码
    */
-  title: string,
+  agentCode: string;
   /**
-   * 系统logo地址
+   * 智能体版本
    */
-  logo: string,
+  agentVersion: string;
   /**
-   * 登陆途径
+   * sessionid
    */
-  loginMode: LOGINMODE
+  sessionId: string;
 }
 
 const initialState: UserInfoSlice = {
-  userInfo: {
-    id: "",
-    token: "",
-    powers: [],
-    mobile: "",
-    realname: "",
-    pointid: "",
-  },
-  title: "",
-  logo: "",
-  loginMode: LOGINMODE.BROWSER
+  auth: "",
+  agentCode: "",
+  agentVersion: "",
+  sessionId: "",
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState: initialState,
   reducers: {
-    setUserInfo: (state, action: PayloadAction<UserInfoState>) => {
-      state.userInfo = action.payload
+    setAuth: (state, action: PayloadAction<UserInfoSlice["auth"]>) => {
+      state.auth = action.payload;
+    },
+    setAgentCode: (
+      state,
+      action: PayloadAction<UserInfoSlice["agentCode"]>
+    ) => {
+      state.agentCode = action.payload;
+    },
+    setAgentVersion: (
+      state,
+      action: PayloadAction<UserInfoSlice["agentVersion"]>
+    ) => {
+      state.agentVersion = action.payload;
+    },
+    setSessionId: (
+      state,
+      action: PayloadAction<UserInfoSlice["sessionId"]>
+    ) => {
+      state.sessionId = action.payload;
     },
   },
-  // extraReducers(builder) {
-    // builder.addCase(getSystemConfigAction.rejected, (state) => {
-    //   state.title = "";
-    //   state.logo = "";
-    // })
-  // },
 });
 
-export const { setUserInfo } = userSlice.actions;
+export const { setAuth, setAgentCode, setAgentVersion, setSessionId } =
+  userSlice.actions;
 
 export default userSlice.reducer;

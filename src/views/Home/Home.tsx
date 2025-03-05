@@ -51,9 +51,7 @@ const Home: React.FC = () => {
       fetchDP(question);
     }
   };
-  //我们来玩一个游戏，你假扮一名宋朝的杂货商人，我是顾客
-  // 我听说苏州蜜饯很好吃，你这里有没有？
-  //给我来十块！多少钱？
+
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
     errorInfo
   ) => {
@@ -80,7 +78,7 @@ const Home: React.FC = () => {
       };
       const reqMsg = [..._.cloneDeep(messagesCtx), reqObj];
       setBtnDisabled(true);
-      await fetchEventSource("https://api.deepseek.com/chat/completions", {
+      await fetchEventSource("http://59.202.54.17:58866/xlm-gateway-jxharz/sfm-api-gateway/gateway/agent/api/createSession", {
         method: "POST",
         headers: {
           Authorization: "Bearer sk-27c99436e5224795a5ac7d7f54f53f1d",
